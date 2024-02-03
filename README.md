@@ -17,7 +17,7 @@ It's important to note that the solutions presented here prioritize education ov
 ## Series Overview:
 
 
-### 1. AWS Server Fleet Optimization
+### [1. AWS Server Fleet Optimization](https://github.com/emkhv/FAANGing_around/blob/main/Amazon_1_hard.md)
 
 #### Problem Statement:
 [Calculate the total time the AWS server fleet was running, given start and stop times of individual servers. Output the result in units of full days.]
@@ -69,7 +69,7 @@ FROM
 
 ---
 
-### 2. Google Interview Question: Finding Median Searches
+### [2. Google Interview Question: Finding Median Searches](https://github.com/emkhv/FAANGing_around/blob/main/google_1_hard.md)
 
 #### Problem Statement:
 [Find the median number of searches a person made last year, given a summary table with the number of searches and the corresponding number of users.]
