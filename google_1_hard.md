@@ -117,7 +117,7 @@ WHERE row_num BETWEEN (total_rows + 1) / 2 AND (total_rows + 2) / 2;
 ```
 The majority of the solutions I saw were very overcomplicated like this. Although this is an interesting approach to consider.
 
-Thank you for joining me in my first FAANGing around series. Have nice day!
+Thank you for joining me in my first [FAANG around series](https://github.com/emkhv/FAANGing_around/)!
  
 
 
