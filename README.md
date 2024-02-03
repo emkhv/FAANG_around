@@ -124,5 +124,7 @@ FROM
 
 Thank you for joining me on my FAANGing Around SQL series. I hope these solutions and insights prove helpful in your SQL journey. Feel free to explore the provided SQL queries, try them out on your own, and don't hesitate to reach out for discussions, feedback, or further clarification.
 
-Stay tuned for more FAANG interview questions and SQL solutions! Happy coding!
+Stay tuned for more FAANG interview questions and SQL solutions!
+
+
 Happy coding!
