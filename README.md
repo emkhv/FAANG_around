@@ -1,21 +1,24 @@
 # FAANGiing Around - SQL Solutions for FAANG Interview Questions
-
-## Description:
+---
 
 Welcome to my journey of conquering SQL challenges, particularly those dreaded FAANG interview questions.
 
-My name is Emma Khachatryan. I've been learning SQL for a year now. My journey started with data engineering, so DDL was a main focus for me for a while, but recently I decided to challenge myself and deepen my knowledge in DML `SELECT` statement. 
+My name is Emma Khachatryan. I've been learning SQL for a year now. My journey started with data engineering, so DDL was a main focus for me for a while, but recently I decided to challenge myself and deepen my knowledge in DML `SELECT` statement.
 
-At each step of learning process there comes a short period when you think you already learned the majority of the information about a topic. I myself often get trapped in that mindset. Then some encounters or discussions bring me back to track of learning, as I realise there is more to every process in data analytics/science then I realise.
+At each step of the learning process, there comes a short period when you think you already learned the majority of the information about a topic. I myself often get trapped in that mindset. Then some encounters or discussions bring me back to the track of learning, as I realize there is more to every process in data analytics/science than I realize.
 
-In SQL, you can have the same output comming from completely differently structured queries, and these series are focused on that.
+In SQL, you can have the same output coming from completely differently structured queries, and these series are focused on that.
 
 I'll walk you through each problem, providing constraints, example output, and more. Then, I'll unveil my approach and solution. Additionally, I'll guide you to other solutions I've discovered and share some unique methods that caught my attention.
 
-It's important to note that the solutions presented here prioritize education over efficiency. One of the principles I use when writing the queries is __avoiding unnecessary window functions__. In the future maybe I should discuss the window functions more in debth. I found using a `JOIN` can pretty much replicate any window function, even the `"running_total"`. You will find many __advanced joins__ used. Don't be fooled though, there are advanced functions like `WITH RECURSIVE` and `PERCENTILE_CONT() WITHIN GROUP()`.
+It's important to note that the solutions presented here prioritize education over efficiency. One of the principles I use when writing the queries is **avoiding unnecessary window functions**. In the future maybe I should discuss the window functions more in depth. I found using a `JOIN` can pretty much replicate any window function, even the `"running_total"`. You will find many **advanced joins** used. Don't be fooled though; there are advanced functions like `WITH RECURSIVE` and `PERCENTILE_CONT() WITHIN GROUP()`.
+
 
 ## Series Overview:
-### 1.AWS Server Fleet Optimization
+
+
+### 1. AWS Server Fleet Optimization
+
 #### Problem Statement:
 [Calculate the total time the AWS server fleet was running, given start and stop times of individual servers. Output the result in units of full days.]
 
@@ -62,8 +65,12 @@ SELECT
 FROM
     cte;
 ```
+##### Problem Link: [AWS Server Fleet Optimization](https://datalemur.com/questions/total-utilization-time)
 
-## 2.Google Interview Question: Finding Median Searches
+---
+
+### 2. Google Interview Question: Finding Median Searches
+
 #### Problem Statement:
 [Find the median number of searches a person made last year, given a summary table with the number of searches and the corresponding number of users.]
 
@@ -109,11 +116,13 @@ SELECT
 FROM 
     cte_numbers;
 ```
+##### Problem Link: [Google Interview Question: Finding Median Searches](https://datalemur.com/questions/median-search-freq)
 
 ## Connect with Me:
-- [LeetCode Profile](https://leetcode.com/emkhv/)
-- [LinkedIn](https://www.linkedin.com/in/emkhv/)
-  
-Feel free to explore the solutions, and don't hesitate to reach out for discussions, feedback, or further clarification. Happy coding!
+- **LeetCode Profile:** [emkhv](https://leetcode.com/emkhv/)
+- **LinkedIn:** [emkhv](https://www.linkedin.com/in/emkhv/)
 
+Thank you for joining me on my FAANGing Around SQL series. I hope these solutions and insights prove helpful in your SQL journey. Feel free to explore the provided SQL queries, try them out on your own, and don't hesitate to reach out for discussions, feedback, or further clarification.
 
+Stay tuned for more FAANG interview questions and SQL solutions! Happy coding!
+Happy coding!
