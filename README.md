@@ -1,4 +1,4 @@
-# FAANGiing Around - SQL Solutions for FAANG Interview Questions
+# FAANG Around - SQL Solutions for FAANG Interview Questions
 ---
 
 Welcome to my journey of conquering SQL challenges, particularly those dreaded FAANG interview questions.
@@ -122,7 +122,7 @@ FROM
 - **LeetCode Profile:** [emkhv](https://leetcode.com/emkhv/)
 - **LinkedIn:** [emkhv](https://www.linkedin.com/in/emkhv/)
 
-Thank you for joining me on my FAANGing Around SQL series. I hope these solutions and insights prove helpful in your SQL journey. Feel free to explore the provided SQL queries, try them out on your own, and don't hesitate to reach out for discussions, feedback, or further clarification.
+Thank you for joining me on my FAANG Around SQL series. I hope these solutions and insights prove helpful in your SQL journey. Feel free to explore the provided SQL queries, try them out on your own, and don't hesitate to reach out for discussions, feedback, or further clarification.
 
 Stay tuned for more FAANG interview questions and SQL solutions!
 
