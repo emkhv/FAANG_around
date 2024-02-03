@@ -22,6 +22,15 @@ It's important to note that the solutions presented here prioritize education ov
 #### Problem Statement:
 [Calculate the total time the AWS server fleet was running, given start and stop times of individual servers. Output the result in units of full days.]
 
+#### Given Data `server_utilization` Table:
+
+| server_id | status_time           | session_status |
+|-----------|-----------------------|-----------------|
+| 1         | 08/02/2022 10:00:00  | start           |
+| 1         | 08/04/2022 10:00:00  | stop            |
+| 2         | 08/17/2022 10:00:00  | start           |
+| 2         | 08/24/2022 10:00:00  | stop            |
+
 #### Constraints:
 - Each server might start and stop several times.
 - The total time in which the server fleet is running can be calculated as the sum of each server's uptime.
@@ -73,6 +82,15 @@ FROM
 
 #### Problem Statement:
 [Find the median number of searches a person made last year, given a summary table with the number of searches and the corresponding number of users.]
+
+#### Given Data `search_frequency` Table:
+
+| searches | num_users |
+|----------|-----------|
+| 1        | 2         |
+| 2        | 2         |
+| 3        | 3         |
+| 4        | 1         |
 
 #### Constraints:
 - Round the median to one decimal point.
