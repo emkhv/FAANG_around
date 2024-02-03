@@ -1,5 +1,5 @@
 # Solving Google Interview Question: Finding Median Searches
-You can also find the problem following the [link](https://datalemur.com/questions/median-search-freq).
+You can find the problem following the [link](https://datalemur.com/questions/median-search-freq).
 
 ## Problem Description
 
