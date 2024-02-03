@@ -2,8 +2,12 @@
 You can find the problem following the [link](https://datalemur.com/questions/total-utilization-time).
 ## Problem Description
 
-Amazon Web Services (AWS) is powered by fleets of servers, and senior management has requested data-driven solutions to optimize server usage. 
-The task is to write a query that calculates the total time that the fleet of servers was running. The output should be in units of full days.
+```csv
+Amazon Web Services (AWS) is powered by fleets of servers,
+and senior management has requested data-driven solutions to optimize server usage.
+The task is to write a query that calculates the total time that the fleet of servers was running.
+The output should be in units of full days.
+```
 
 ## Assumptions
 
@@ -110,4 +114,12 @@ WHERE session_status = 'start'
 ```
 
 The `lead() over()` function is more readable. I wanted to avoid using any window function when solving it, so it was not part of mine.
+
+---
+
+### Connect with Me:
+- **LeetCode Profile:** [emkhv](https://leetcode.com/emkhv/)
+- **LinkedIn:** [emkhv](https://www.linkedin.com/in/emkhv/)
+
+Thank you for joining me on [FAANG around series](https://github.com/emkhv/FAANG_around/). I hope these solutions and insights prove helpful in your SQL journey. Feel free to explore the provided SQL queries, try them out on your own, and don't hesitate to reach out for discussions, feedback, or further clarification.
 
