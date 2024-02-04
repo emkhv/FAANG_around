@@ -1,8 +1,14 @@
 # Maximize Prime Item Inventory
 
-Amazon wants to maximize the number of items it can stock in a 500,000 square feet warehouse. It wants to stock as many prime items as possible, and afterward use the remaining square footage to stock the most number of non-prime items.
+Amazon wants to maximize the number of items it can stock in a 500,000-square-foot warehouse. It wants to stock as many prime items as possible, and afterwards use the remaining square footage to stock the most number of non-prime items.
 
-## Assumptions
+Write a query to find the number of prime and non-prime items that can be stored in the 500,000 square feet warehouse. Output the item type with prime_eligible followed by not_prime and the maximum number of items that can be stocked.
+
+*Effective April 3rd 2023, we added some new assumptions to the question to provide additional clarity.**
+
+
+
+### Assumptions
 
 - Prime and non-prime items have to be stored in equal amounts, regardless of their size or square footage. This implies that prime items will be stored separately from non-prime items in their respective containers, but within each container, all items must be in the same amount.
 - Non-prime items must always be available in stock to meet customer demand, so the non-prime item count should never be zero.
@@ -37,21 +43,21 @@ Amazon wants to maximize the number of items it can stock in a 500,000 square fe
 
 ## Approach
 
-Usually when I write the 'Approach' section, I try to be as simple as possible, as it is very easy to understand the rest after you know the simple structure of the query intended.
+Usually, when I write the 'Approach' section, I try to be as simple as possible, as it is very easy to understand the rest after you know the simple structure of the query intended.
 In this case, the question itself is not simple or 'direct' enough for me to assume you know what it is actually 'saying'. 
 
 
-I was struggling to understand the reqirements, and tried various solutions. 
-I checked the comments, turned out I was not alone and many people were struggling with the description. I was planning to solve it in a day max, ended up solving in 2. 
-And the final hint I got was from my friend who is a senior engineer and understood the problem much faster then I did(I am a junior I guess?) 
+I was struggling to understand the requirements, and tried various solutions. 
+I checked the comments, turned out I was not alone and many people were struggling with the description. I was planning to solve it in a day max, but ended up solving it in 2. 
+The final hint I got was from my friend who is a senior engineer and understood the problem much faster than I did(I am a junior I guess?) 
 
 
-This was a very annoying problem, and I think they did it on purpose. I did the "AI-check", it couldn't solve it. 
+This was a very annoying problem, and I think they did it on purpose. I did the "AI check", but it couldn't solve it. 
 If I happened to see the solution before the problem, I would imagine a very different problem description.
 
 Anyway, let's tackle the solution approach.
 
-The first thing you need to understand is that all the items of the Prime and Non-Prime lists CAN fit into the warehouse. 
+The first thing you need to understand is that all the items on the Prime and Non-Prime lists CAN fit into the warehouse. 
 So you can keep them all together and in multiple counts. We need to prioritise the Prime items. 
 
 ### Steps:
@@ -60,33 +66,32 @@ So you can keep them all together and in multiple counts. We need to prioritise 
 **`prime` cte:**
  - Count the sum of the square feet all Prime items are taking together
  - See how many times we can fit that sum in the warehouse, hence finding the `prime_item_count`(Now we know how many of each prime item we need to take).
- - Count how much space is left for the Non-Prime items.(Yes, all non-prime items CAN fit in this space, this is bizzare to me as well)
+ - Count how much space is left for the Non-Prime items (Yes, all non-prime items CAN fit in this space, this is bizarre to me as well).
 
 
 **Main query:**
  
  (We are going to use the `prime` cte in this one, but I will not join it in the `FROM` statement as expected.
-Insted, we are going to extract everything separately, using it as a warehouse lol.)
-We expect two rows to pop as an output and we already have the data they will display, so we can just select the string we need directrly. 
-This is a very widely used technique.As I understand when there is a big calculation invoved and you don't want to overcomplicate the query, this method makes it both readable and light.
+Instead, we are going to extract everything separately, using it as a warehouse lol.)
+
+We expect two rows to pop as an output and we already have the data they will display, so we can just select the string we need directly. 
+This is a very widely used technique. As I understand when there is a big calculation involved and you don't want to overcomplicate the query, this method makes it both readable and light.
 
  - Select 'prime_eligible' string
  - Count all prime items that will be stored
  - Union 'not_prime' row
  - Select 'not_prime' string
  - Count all the not_prime items that will be stored(Here we use the second part of the cte `prime`, as we store the `space_left` there, we will
-1. Count the sum of the square feet all Non-Prime items are taking together
-2. See how many times we can fit that sum in the warehouse, hence finding the `non_prime_item_count`
-3. Multiply it by the total_count
+      - Count the sum of the square feet all Non-Prime items are taking together
+      - See how many times we can fit that sum in the warehouse, hence finding the `non_prime_item_count` 
+      - Multiply it by the unique non-prime items count to know the total Non-Prime items total
    )
 
-That's all I guess, looks much simple. That desscription was a disaster :v 
+Looks much simpler. That description was a disaster :v 
 
 
 
 ## SQL Query
-
-Here's the SQL query to solve the problem:
 
 ```sql
 -- Create a Common Table Expression (CTE) named 'prime' to calculate the number of prime items and the remaining space
@@ -125,9 +130,48 @@ WHERE
 
 The query uses a Common Table Expression (CTE) named `prime` to calculate the number of prime items and the remaining space in the warehouse. It then selects prime and non-prime eligible items separately and calculates the overall count of items to be stored.
 
+## Other approaches
+
+I did not find anything interesting here, the code that site provided was pretty similar, maybe more readable. 
+
+
+```sql
+WITH summary AS (  
+  SELECT  
+    item_type,  
+    SUM(square_footage) AS total_sqft,  
+    COUNT(*) AS item_count  
+  FROM inventory  
+  GROUP BY item_type
+),
+prime_occupied_area AS (  
+  SELECT  
+    item_type,
+    total_sqft,
+    FLOOR(500000/total_sqft) AS prime_item_combination_count,
+    (FLOOR(500000/total_sqft) * item_count) AS prime_item_count
+  FROM summary  
+  WHERE item_type = 'prime_eligible'
+)
+
+SELECT
+  item_type,
+  CASE 
+    WHEN item_type = 'prime_eligible' 
+      THEN (FLOOR(500000/total_sqft) * item_count)
+    WHEN item_type = 'not_prime' 
+      THEN FLOOR((500000 - 
+        (SELECT FLOOR(500000/total_sqft) * total_sqft FROM prime_occupied_area))  
+        / total_sqft)  
+        * item_count
+  END AS item_count
+FROM summary
+ORDER BY item_type DESC;
+```
+
 ## Conclusion
 
-The solution optimizes the storage of items in the warehouse, maximizing the number of prime items and utilizing the remaining space for non-prime items, meeting the specified assumptions and constraints.
+This is an example of a confusing problem. The majority of them are, of course, but this one takes you down already in the description. Overall, nothing extra challenging was done in the solution.
 
 ---
 
