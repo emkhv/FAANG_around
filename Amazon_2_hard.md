@@ -175,8 +175,8 @@ This is an example of a confusing problem. The majority of them are, of course, 
 
 ---
 
+Thank you for joining me on [FAANG around series](https://github.com/emkhv/FAANG_around/). I hope these solutions and insights prove helpful in your SQL journey. Feel free to explore the provided SQL queries, try them out on your own, and don't hesitate to reach out for discussions, feedback, or further clarification.
+
 ### Connect with Me:
 - **LeetCode Profile:** [emkhv](https://leetcode.com/emkhv/)
 - **LinkedIn:** [emkhv](https://www.linkedin.com/in/emkhv/)
-
-Thank you for joining me on [FAANG around series](https://github.com/emkhv/FAANG_around/). I hope these solutions and insights prove helpful in your SQL journey. Feel free to explore the provided SQL queries, try them out on your own, and don't hesitate to reach out for discussions, feedback, or further clarification.
