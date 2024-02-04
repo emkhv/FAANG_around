@@ -1,16 +1,24 @@
 # Maximize Prime Item Inventory
+You can find the problem following the [link](https://datalemur.com/questions/prime-warehouse-storage).
+## Problem Description
 
-Amazon wants to maximize the number of items it can stock in a 500,000-square-foot warehouse. It wants to stock as many prime items as possible, and afterwards use the remaining square footage to stock the most number of non-prime items.
+```csv
+Amazon wants to maximize the number of items it can stock in a 500,000-square-foot warehouse.
+It wants to stock as many prime items as possible, and afterwards use the remaining square footage to stock the most number of non-prime items.
 
-Write a query to find the number of prime and non-prime items that can be stored in the 500,000 square feet warehouse. Output the item type with prime_eligible followed by not_prime and the maximum number of items that can be stocked.
+Write a query to find the number of prime and non-prime items that can be stored in the 500,000 square feet warehouse.
+Output the item type with prime_eligible followed by not_prime and the maximum number of items that can be stocked.
+
+```
 
 *Effective April 3rd 2023, we added some new assumptions to the question to provide additional clarity.**
 
 
+## Assumptions:
 
-### Assumptions
-
-- Prime and non-prime items have to be stored in equal amounts, regardless of their size or square footage. This implies that prime items will be stored separately from non-prime items in their respective containers, but within each container, all items must be in the same amount.
+- Prime and non-prime items have to be stored in equal amounts, regardless of their size or square footage.
+This implies that prime items will be stored separately from non-prime items in their respective containers,
+but within each container, all items must be in the same amount.
 - Non-prime items must always be available in stock to meet customer demand, so the non-prime item count should never be zero.
 - Item count should be whole numbers (integers).
 
@@ -130,7 +138,7 @@ WHERE
 
 The query uses a Common Table Expression (CTE) named `prime` to calculate the number of prime items and the remaining space in the warehouse. It then selects prime and non-prime eligible items separately and calculates the overall count of items to be stored.
 
-## Other approaches
+## P.S.
 
 I did not find anything interesting here, the code that site provided was pretty similar, maybe more readable. 
 
