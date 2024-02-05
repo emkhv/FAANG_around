@@ -40,40 +40,18 @@ It's important to note that the solutions presented here prioritize education ov
 |-----------------|
 |21|
 
-#### My Approach:
+### My Approach:
 - Utilized advanced joins to handle multiple start-stop cycles of servers.
 - Converted time intervals to EPOCH and calculated the sum in days.
 
-#### Alternative Solutions:
+### Alternative Solutions:
 - Explored a solution using the `LEAD()` window function provided by the original site.
 
-#### Additional Insights:
-- Demonstrated the use of `EXTRACT` and `SUM` for efficient time calculations.
-- Avoided window functions in the main solution.
 
-#### SQL Query:
-```sql
--- Calculate the total uptime of the server fleet in full days
-WITH cte AS (
-    SELECT
-        s1.status_time AS start_time,
-        MIN(s2.status_time) AS stop_time
-    FROM
-        server_utilization s1
-    INNER JOIN
-        server_utilization s2 ON s1.server_id = s2.server_id
-                               AND s2.session_status LIKE 'stop'
-                               AND s1.status_time < s2.status_time
-    WHERE
-        s1.session_status LIKE 'start'
-    GROUP BY
-        s1.status_time
-)
-SELECT
-    SUM(EXTRACT(EPOCH FROM (stop_time - start_time)) / 86400)::INT AS total_uptime_days
-FROM
-    cte;
-```
+
+#### Find out the [solution](https://github.com/emkhv/FAANGing_around/blob/main/Amazon_1_hard.md)
+
+
 ##### Problem Link: [AWS Server Fleet Optimization](https://datalemur.com/questions/total-utilization-time)
 
 ---
@@ -100,41 +78,22 @@ FROM
 |------|
 |2.5|
 
-#### My Approach:
+
+### My Approach:
 - Used a recursive common table expression (CTE) to expand the search frequency table.
 - Calculated the median using the `PERCENTILE_CONT` function and rounded the result.
 
-#### Alternative Solutions:
+### Alternative Solutions:
 - Explored a more concise solution using `GENERATE_SERIES` for table expansion.
 - Found an alternative approach using `CROSS JOIN` and `ROW_NUMBER()` for median calculation.
 
-#### Additional Insights:
-- Experimented with various solutions, exploring different SQL techniques.
-- Discussed the trade-offs and complexities of each solution.
 
-#### SQL Query:
-```sql
--- Calculate the median number of searches made by a user
-WITH RECURSIVE cte_numbers(searches, num_users) 
-AS (
-    SELECT 
-        searches, num_users
-    FROM 
-        search_frequency
-    UNION ALL
-    SELECT    
-        searches, num_users - 1
-    FROM    
-        cte_numbers
-    WHERE 
-        num_users > 1
-)
-SELECT 
-    ROUND(PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY searches)::NUMERIC, 1) AS "Percentile_Cont"
-FROM 
-    cte_numbers;
-```
+
+#### Find out the [solution](https://github.com/emkhv/FAANGing_around/blob/main/google_1_hard.md)
+
 ##### Problem Link: [Google Interview Question: Finding Median Searches](https://datalemur.com/questions/median-search-freq)
+
+---
 
 ## Connect with Me:
 - **LeetCode Profile:** [emkhv](https://leetcode.com/emkhv/)
