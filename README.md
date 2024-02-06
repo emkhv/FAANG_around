@@ -52,7 +52,7 @@ It's important to note that the solutions presented here prioritize education ov
 #### Find out the [solution](https://github.com/emkhv/FAANGing_around/blob/main/Amazon_1_hard.md)
 
 
-##### Problem Link: [AWS Server Fleet Optimization](https://datalemur.com/questions/total-utilization-time)
+##### Problem Link: [AWS: Server Fleet Optimization](https://datalemur.com/questions/total-utilization-time)
 
 ---
 
@@ -92,6 +92,52 @@ It's important to note that the solutions presented here prioritize education ov
 #### Find out the [solution](https://github.com/emkhv/FAANGing_around/blob/main/google_1_hard.md)
 
 ##### Problem Link: [Google Interview Question: Finding Median Searches](https://datalemur.com/questions/median-search-freq)
+
+---
+
+### [3. Maximize Prime Item Inventory](https://github.com/emkhv/FAANGing_around/blob/main/Amazon_1_hard.md)
+
+#### Problem Summary
+
+[Amazon aims to maximize the number of items it can stock in a 500,000-square-foot warehouse. The goal is to prioritize prime items and use the remaining space for non-prime items. Your task is to write a query to determine the number of prime and non-prime items that can be stored in the warehouse. The output should include the item type (prime_eligible or not_prime) and the maximum number of items that can be stocked.]
+
+#### Given Data `inventory` Table:
+
+| Column Name    | Type    |
+| -------------- | ------- |
+| item_id        | integer |
+| item_type      | string  |
+| item_category  | string  |
+| square_footage | decimal |
+
+#### Example Input:
+
+| item_id | item_type      | item_category       | square_footage |
+|---------|-----------------|---------------------|-----------------|
+| 1374    | prime_eligible  | mini refrigerator   | 68.00           |
+| 4245    | not_prime       | standing lamp       | 26.40           |
+| 2452    | prime_eligible  | television          | 85.00           |
+| 3255    | not_prime       | side table          | 22.60           |
+| 1672    | prime_eligible  | laptop              | 8.50            |
+
+#### Example Output:
+
+| item_type      | item_count |
+| -------------- | ---------- |
+| prime_eligible | 9285       |
+| not_prime      | 6          |
+
+#### Approach
+
+The problem description can be complex and confusing. To simplify, we need to calculate the number of prime items that can be stored, determine the remaining space for non-prime items, and then calculate the number of non-prime items that can fit into that space. The approach involves using a Common Table Expression (CTE) named 'prime' to perform these calculations and then selecting and presenting the results.
+
+### Alternative Solutions:
+Provided by the site, slightly more readable. Utilized additional CTEs for clarity.
+
+#### Find out the [solution](https://github.com/emkhv/FAANGing_around/blob/main/Amazon_2_hard.md)
+
+##### Problem Link: [Google Interview Question: Finding Median Searches](https://datalemur.com/questions/prime-warehouse-storage)
+
 
 ---
 
