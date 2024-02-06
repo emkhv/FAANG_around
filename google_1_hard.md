@@ -1,11 +1,11 @@
 # Solving Google Interview Question: Finding Median Searches
-You can find the problem following the [link](https://datalemur.com/questions/median-search-freq).
+You can find the problem by following the [link](https://datalemur.com/questions/median-search-freq).
 
 ## Problem Description
 
 Google's marketing team is making a Superbowl commercial and needs a simple statistic to put on their TV ad: the median number of searches a person made last year.
 
-However, at Google scale, querying the 2 trillion searches is too costly. Luckily, you have access to the summary table which tells you the number of searches made last year and how many Google users fall into that bucket.
+However, at Google's scale, querying the 2 trillion searches is too costly. Luckily, you have access to the summary table which tells you the number of searches made last year and how many Google users fall into that bucket.
 
 Write a query to report the median of searches made by a user. Round the median to one decimal point.
 
@@ -66,7 +66,7 @@ FROM
 
 ## Explanation
 
-The query uses a recursive common table expression (CTE) to generate the expanded list of searches. 
+The query uses a recursive common table expression (CTE) to generate the expanded list of searches. Every time we 'go over' the `search_frequency` table, su subtract 1 from `num_users`, and as a recursive query we give it an ending point, the `> 1` to overcome printing the same row twice. At the end, we get the expanded table of searches.
 The `PERCENTILE_CONT` function is then used to calculate the median, and the result is rounded to one decimal point.
 
 
@@ -74,10 +74,10 @@ The `PERCENTILE_CONT` function is then used to calculate the median, and the res
 
 ## P.S.
 
-This was my first attempt in constructing a RECURSIVE query. The way I imagine it is that I can write a `UNION ALL` but give it a condition that will make it dinamic.
-After solving it I looked through for other solutions. 
+This was my first attempt at constructing a RECURSIVE query. The way I imagine it is that I can write a `UNION ALL` but give it a condition that will make it dynamic.
+After solving it I looked for other solutions. 
 
-This is the solution __the site__ provides, which in it's turn is very slick 
+This is the solution __the site__ provides, which in its turn is very slick 
 ```sql
 WITH searches_expanded AS (
   SELECT searches
