@@ -102,7 +102,6 @@ Looks much simpler. That description was a disaster :v
 ## SQL Query
 
 ```sql
--- Create a Common Table Expression (CTE) named 'prime' to calculate the number of prime items and the remaining space
 WITH prime AS (
     SELECT
         FLOOR(500000 / SUM(square_footage)) AS prime_item_count, 
@@ -112,8 +111,6 @@ WITH prime AS (
     WHERE
         item_type LIKE 'prime_eligible'
 )
-
--- Select prime eligible items and calculate the overall count of prime items to be stored
 SELECT
     'prime_eligible' AS item_type,
     (SELECT prime_item_count FROM prime) * COUNT(DISTINCT item_id) AS total_items
@@ -121,10 +118,7 @@ FROM
     inventory
 WHERE
     item_type LIKE 'prime_eligible'
-
-UNION ALL -- Combine results with non-prime eligible items
-
--- Select non-prime eligible items and calculate the overall count of non-prime items to be stored
+UNION ALL
 SELECT
     'not_prime' AS item_type,
     FLOOR((SELECT space_left FROM prime) / SUM(square_footage)) * COUNT(DISTINCT item_id) AS total_items
