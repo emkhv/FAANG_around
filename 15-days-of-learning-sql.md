@@ -120,7 +120,9 @@ Here's how we achieve that:
 
 ## Alternative Solutions
 
-Another great [solution](https://www.hackerrank.com/rest/contests/master/challenges/15-days-of-learning-sql/hackers/VladD/download_solution?primary=true) involved grouping submissions by submission date and hacker ID, then self-joining the rows where the submission date was greater than or equal to the submission date in the second table. This way we could take the hacker for each day and add all the previous dates when he made a submission, then we would add to 1 the number of days that passed after '2016-03-01', to find out what was the actual day of the contest, then count the unique dates in the second table, and if the number of the unique dates for each hacker was the same as the current actual day of the contest, then we would conclude that he submitted every day and kept the streak. The solution also handled determining the hacker with the maximum submissions for each day.
+- Another great [solution](https://www.hackerrank.com/rest/contests/master/challenges/15-days-of-learning-sql/hackers/VladD/download_solution?primary=true) involved grouping submissions by submission date and hacker ID, then self-joining the rows where the submission date was greater than or equal to the submission date in the second table.
+
+  This way we could take the hacker for each day and add all the previous dates when they made a submission, then we would add to 1 the number of days that passed after '2016-03-01', to find out what was the actual day of the contest, then count the unique dates in the second table, and if the number of the unique dates for each hacker was the same as the current, actual day of the contest, then we would conclude that he submitted every day and kept the streak. The solution also handled determining the hacker with the maximum submissions for each day.
 ```sql
 with Sub1 as (
     select s1.submission_date, s1.hacker_id,
