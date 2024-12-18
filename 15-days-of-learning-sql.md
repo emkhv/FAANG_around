@@ -47,6 +47,24 @@ Given the following input data, the output should be:
 | 2016-03-05      | 1              | 36396     | Frank   |
 | 2016-03-06      | 1              | 20703     | Angela  |
 
+## Explanation
+
+The hardest part of this problem is counting the number of unique hackers that made a submission each day, and determine it for each day of the competition, so if they missed their streak, then they should be out of the count. Also it can be a bit confusing as the hacker who made the maximum number of submissions might not be in number of unique hackers that made a submission each day, so the two calculations should be separate. How do we achieve that?
+
+First, we use a recursive CTE (this is the second problem in this list which uses a recursive CTE, the first one you can find [here](https://github.com/emkhv/FAANG_around/blob/main/google_1_hard.md))․ They say recursive queries are computationally heavy, and you need to be careful to give it a termination statement, but they make the code fairly readable and much simpler then if one tried to do them without one. Some of the solutions I checked used custom functions(MySQL), which is of course readable, but requires a lot of computational power as well and complicates the query, compared to the simple recursive solution we used here.
+Here's how we achieve that:
+
+1. **Recursive CTE**: This tracks submissions for each hacker starting from March 1, 2016. The query recursively joins each day with the previous day's submissions to ensure we account for all submissions per hacker. The condition `INNER JOIN rec r ON e.hacker_id = r.hacker_id` ensures we only include hackers who made submissions on consecutive days.
+
+2. **Hacker with Maximum Submissions**:
+   - The `COUNT(hacker_id) OVER (PARTITION BY submission_date, hacker_id)` counts the number of submissions each hacker made on each day.
+   - `RANK() OVER (PARTITION BY submission_date ORDER BY num_submissions DESC)` ranks hackers based on their submissions, with the hacker having the most submissions getting the highest rank.
+   - `MIN(hacker_id) WHERE rank = 1` selects the hacker with the most submissions for each day. If there's a tie, the one with the lowest `hacker_id` is chosen.
+
+3. **Join with Hackers Table**: We join with the `Hackers` table to get the hacker's name.
+
+4. **Final Output**: The results are joined by `submission_date` and ordered by `submission_date` to ensure the output is sorted correctly.
+
 ## Approach
 
 To solve this problem, we will:
@@ -99,24 +117,6 @@ ORDER BY rec.submission_date;
 ```
 
 
-
-## Explanation
-
-The hardest part of this problem is counting the number of unique hackers that made a submission each day, and determine it for each day of the competition, so if they missed their streak, then they should be out of the count. Also it can be a bit confusing as the hacker who made the maximum number of submissions might not be in number of unique hackers that made a submission each day, so the two calculations should be separate. How do we achieve that?
-
-First, we use a recursive CTE (this is the second problem in this list which uses a recursive CTE, the first one you can find [here](https://github.com/emkhv/FAANG_around/blob/main/google_1_hard.md))․ They say recursive queries are computationally heavy, and you need to be careful to give it a termination statement, but they make the code fairly readable and much simpler then if one tried to do them without one. Some of the solutions I checked used custom functions(MySQL), which is of course readable, but requires a lot of computational power as well and complicates the query, compared to the simple recursive solution we used here.
-Here's how we achieve that:
-
-1. **Recursive CTE**: This tracks submissions for each hacker starting from March 1, 2016. The query recursively joins each day with the previous day's submissions to ensure we account for all submissions per hacker. The condition `INNER JOIN rec r ON e.hacker_id = r.hacker_id` ensures we only include hackers who made submissions on consecutive days.
-
-2. **Hacker with Maximum Submissions**:
-   - The `COUNT(hacker_id) OVER (PARTITION BY submission_date, hacker_id)` counts the number of submissions each hacker made on each day.
-   - `RANK() OVER (PARTITION BY submission_date ORDER BY num_submissions DESC)` ranks hackers based on their submissions, with the hacker having the most submissions getting the highest rank.
-   - `MIN(hacker_id) WHERE rank = 1` selects the hacker with the most submissions for each day. If there's a tie, the one with the lowest `hacker_id` is chosen.
-
-3. **Join with Hackers Table**: We join with the `Hackers` table to get the hacker's name.
-
-4. **Final Output**: The results are joined by `submission_date` and ordered by `submission_date` to ensure the output is sorted correctly.
 
 ## Alternative Solutions
 
